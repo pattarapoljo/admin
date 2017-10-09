@@ -248,7 +248,7 @@ include "check-login.php";
             <th width="5%">#</th>
             <th width="10%">รูป</th>
             <th width="25%">ชื่อสินค้า</th>
-            <th width="45%">รายละเอียด</th>
+            <th width="30%">รายละเอียด</th>
             <th width="15%">ตัวเลือก</th>
           </tr>
         </thead>
@@ -282,7 +282,8 @@ include "check-login.php";
 
             </td>
             <td>
-              <span class="tag">รายละเอียด:</span><?php echo $pro['detail']; ?><br>
+              <!-- ปิดรายละเอียด -->
+              <!-- <span class="tag">รายละเอียด:</span><?php echo $pro['detail']; ?><br> -->
               <span class="tag">หมวดหมู่:</span><?php echo $pro['cat_name']; ?><br>
               <span class="tag">ผู้จัดส่ง:</span><?php echo $pro['sup_name']; ?><br>
               <span class="tag">คุณลักษณะ:</span>

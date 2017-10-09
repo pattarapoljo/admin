@@ -6,34 +6,10 @@ include "check-login.php";
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>ระบบจำหน่ายอะไหล่รถจักรยานยนต์</title>
-  <style>
-  @import "global.css";
-  #c1 {
-    width: 100px;
-  }
-  #c2 {
-    width: 300px;
-  }
-  #c3 {
-    width: 100px;
-  }
-  tr:nth-of-type(odd) {
-    background:  whitesmoke;
-  }
-  tr:nth-of-type(even) {
-    background: whitesmoke;
-  }
-  td:first-child, td:last-child {
-    text-align: center;
-  }
-
-  </style>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
-  <link href="js/jquery-ui.min.css" rel="stylesheet">
 
+  <link href="js/jquery-ui.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
   <script src="js/jquery-2.1.1.min.js"> </script>
   <script src="js/jquery-ui.min.js"> </script>
   <script src="js/jquery.blockUI.js"> </script>
@@ -91,8 +67,7 @@ include "check-login.php";
 
 <body>
   <?php include "top.php"; ?>
-
-
+  <div class="container">
     <?php
     include "dblink.php";
     include "lib/pagination.php";
@@ -126,8 +101,8 @@ include "check-login.php";
             <td><?php echo $cat['cat_id']; ?></td>
             <td><?php echo $cat['cat_name']; ?></td>
             <td>
-              <button type="button" class="edit btn btn-primary btn-sm" data-id="<?php echo $cat['cat_id']; ?>">แก้ไข</button>
-              <button type="button" class="del btn btn-danger btn-sm" data-id="<?php echo $cat['cat_id']; ?>">ลบ</button>
+              <button type="button" class="btn btn-warning" data-id="<?php echo $cat['cat_id']; ?>">แก้ไข</button>
+              <button type="button" class="btn btn-danger" data-id="<?php echo $cat['cat_id']; ?>">ลบ</button>
             </td>
           </tr>
           <?php
@@ -141,6 +116,6 @@ include "check-login.php";
         echo '</p>';
       }
       ?>
-    
+    </div>
   </body>
   </html>
