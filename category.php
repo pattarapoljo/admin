@@ -1,19 +1,20 @@
 <?php
 include "top.php";
-
+// include "CategoryAction.php";
 $sql = "SELECT * FROM categories";
 $result = mysqli_query($link, $sql);
+
 ?>
 
 <div class="row">
   <div class="col">
-    <button id="add-cat" class="btn btn-success">เพิ่มหมวดหมู่</button>
+    <a href="category-new.php" class="btn btn-success">เพิ่มหมวดหมู่</a>
+
   </div>
 </div>
 <div class="row">
   <div class="col">
     <table class="CTable table table-striped table-bordered">
-      <colgroup><col id="c1"><col id="c2"><col id="c3"></colgroup>
       <thead>
         <tr>
           <th>รหัส</th>
@@ -27,8 +28,8 @@ $result = mysqli_query($link, $sql);
             <td><?php echo $cat['cat_id']; ?></td>
             <td><?php echo $cat['cat_name']; ?></td>
             <td>
-              <button type="button" class="btn btn-warning" data-id="<?php echo $cat['cat_id']; ?>">แก้ไข</button>
-              <button type="button" class="btn btn-danger" data-id="<?php echo $cat['cat_id']; ?>">ลบ</button>
+              <a class="btn btn-warning" href="category-edit.php?cat_id=<?php echo $cat['cat_id']; ?>">แก้ไข</a>
+              <a class="btn btn-danger" href="category-del.php?cat_id=<?php echo $cat['cat_id']; ?>">ลบ</a>
             </td>
           </tr>
         <?php } ?>
@@ -36,5 +37,6 @@ $result = mysqli_query($link, $sql);
     </table>
   </div>
 </div>
+
 
 <?php include "footer.php"; ?>
