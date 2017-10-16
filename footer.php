@@ -16,31 +16,6 @@ $(document).ready(function(){
   );
 });
 
-$(function() {
-  $('#add-cat').click(function() {
-    var cat = prompt("กรุณากำหนดชื่อหมวด", "");
-    if(cat) {
-      ajaxSend({'action': 'add', 'cat':cat});
-    }
-  });
-
-  $('button.edit').click(function() {
-    var cat = prompt("กรุณากำหนดชื่อใหม่สำหรับหมวดนี้", "");
-    if(cat) {
-      var id = $(this).attr('data-id');
-      ajaxSend({'action': 'edit', 'cat':cat, 'cat_id': id});
-    }
-  });
-
-  $('button.del').click(function() {
-    if(confirm("ยืนยันที่ัจะลบหมวดนี้")) {
-      var id = $(this).attr('data-id');
-      ajaxSend({'action': 'del', 'cat_id': id});
-    }
-  });
-
-});
-
 </script>
 </body>
 </html>
