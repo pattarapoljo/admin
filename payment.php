@@ -23,7 +23,7 @@ $result = mysqli_query($link, $sql);
 
         <?php foreach ($result as $key => $value): ?>
           <tr>
-            <td><?php echo $value['order_id'];; ?></td>
+            <td><?php echo $value['order_id']; ?></td>
             <td><?php echo $value['bank']; ?></td>
             <td><?php echo $value['location']; ?></td>
             <td><?php echo $value['amount']; ?></td>
