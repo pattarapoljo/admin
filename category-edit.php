@@ -11,10 +11,10 @@ $cats = mysqli_fetch_array($result);
 <div class="row">
 	<div class="col">
 		<form method="post" action="category-save.php">
-			<input name="cat_id" type="hidden" value="<? echo $cats['cat_name'] ?>">
+			<input name="cat_id" type="hidden" value="<?php echo $cats['cat_id'] ?>">
 			<div class="form-group">
 				<label for="">ชื่อหมวดหมู่</label>
-				<input name="cat_name" type="text" class="form-control" value="<? echo $cats['cat_name'] ?>">
+				<input name="cat_name" type="text" class="form-control" value="<?php echo $cats['cat_name'] ?>">
 			</div>
 
 			<button type="submit" class="btn btn-success">บันทึก</button>
