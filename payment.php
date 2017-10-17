@@ -2,10 +2,11 @@
 include "top.php";
 $sql = "SELECT * FROM payments";
 $result = mysqli_query($link, $sql);
+
 ?>
 
 <div class="row">
-  <div class="col table-responsive">
+  <div class="col">
     <table class="CTable table table-striped table-bordered">
       <thead>
         <tr>
@@ -29,7 +30,7 @@ $result = mysqli_query($link, $sql);
             <td><?php echo $value['transfer_date']; ?></td>
             <td></td>
             <td>
-              
+
               <?php if ($value['confirm'] == 'yes'): ?>
                 <span class="badge badge-secondary">ได้รับแล้ว</span>
               <?php else: ?>
