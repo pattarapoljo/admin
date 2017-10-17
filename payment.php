@@ -6,7 +6,7 @@ $result = mysqli_query($link, $sql);
 ?>
 
 <div class="row">
-  <div class="col">
+  <div class="col table-responsive">
     <table class="CTable table table-striped table-bordered">
       <thead>
         <tr>
@@ -41,9 +41,11 @@ $result = mysqli_query($link, $sql);
               </td>
             </tr>
         <?php endforeach; ?>
-      </tbody>
-      </table>
 
+      </tbody>
+    </table>
+
+  </div>
     </div>
 
 <?php include "footer.php"; ?>
