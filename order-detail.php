@@ -67,8 +67,16 @@ $customers = mysqli_fetch_array($result);
     <h5>วันที่: <?php echo $order['order_date'];?> รหัสการสั่งซื้อ: <?php echo $order['order_id'];?></h5>
   </div>
 </div>
-
-
+<hr>
+<div class="row">
+  <div class="col">
+    <a href="order-delivery.php?order_id=<?php echo $order['order_id']; ?>" class="btn btn-danger" >จัดส่งสินค้า</a>
+  </div>
+  <div class="col text-right">
+    <a href="invoice.php?order_id=<?php echo $order['order_id']; ?>" target="_blank" class="btn btn-info" >พิมพ์</a>
+  </div>
+</div>
+<hr>
 <div class="row">
   <div class="col table-responsive">
     <table class="CTable table table-striped table-bordered">
@@ -109,7 +117,7 @@ $customers = mysqli_fetch_array($result);
     </tr>
   </tbody>
 
-   <a href="order-delivery.php?order_id=<?php echo $order['order_id']; ?>" class="btn btn-danger" >จัดส่งสินค้า</a>
+</table>
 
 </div>
 </div>
