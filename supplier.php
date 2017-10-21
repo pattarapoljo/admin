@@ -1,87 +1,49 @@
 <?php
 include "top.php";
+$sql = "SELECT * FROM suppliers";
+$result = mysqli_query($link, $sql);
 ?>
 
-<body style="padding-top:70px">
-  <?php include "top.php"; ?>
-  <div class="container">
-    <?php
-    include "dblink.php";
-    include "lib/pagination.php";
-
-    $sql = "SELECT * FROM suppliers";
-    $result = page_query($link, $sql, 20);
-    $first = page_start_row();
-    $last = page_stop_row();
-    $total = page_total_rows();
-    if($total == 0) {
-      $first = 0;
-    }
-    ?>
-    <div align="right">
-      <button id="add-sup">เพิ่มผู้จัดส่งสินค้า</button>
-    </div>
-    <table class="CTable">
-      <colgroup><col id="c1"><col id="c2"><col id="c3"><col id="c4"><col id="c5"><col id="c6"></colgroup>
+<div class="row">
+  <div class="col">
+        <a href="supplier-new.php" class="btn btn-success">เพิ่มผู้จัดส่ง</a>
+  </div>
+</div>
+<div class="row">
+  <div class="col table-responsive">
+    <table class="CTable table table-striped table-bordered">
       <thead>
         <tr>
           <th>ลำดับ</th>
-          <th>ชื่อผู้จัดส่งสินค้า</th>
+          <th>ชื่อบริษัท</th>
           <th>ที่อยู่</th>
           <th>โทร</th>
           <th>บุคคลในการติดต่อ</th>
+          <th>เว็บไซต์</th>
           <th>คำสั่ง</th>
         </tr>
       </thead>
-      <?php
-      $row = $first;
-      while($sup = mysqli_fetch_array($result)) {
-        if(!empty($sup['website'])) {
-          $sup['sup_name'] = "<a href=\"{$sup['website']}\" target=\"_blank\">{$sup['sup_name']}</a>";
-        }
-        ?>
+      <tbody>
+
+        <?php foreach ($result as $key => $value): ?>
         <tr>
-          <td><?php echo $row; ?></td>
-          <td><?php echo $sup['sup_name']; ?></td>
-          <td><?php echo $sup['address']; ?></td>
-          <td><?php echo $sup['phone']; ?></td>
-          <td><?php echo $sup['contact_name']; ?></td>
+          <td><?php echo $value['sup_id']; ?></td>
+          <td><?php echo $value['sup_name']; ?></td>
+          <td><?php echo $value['address']; ?></td>
+          <td><?php echo $value['phone']; ?></td>
+          <td><?php echo $value['contact_name']; ?></td>
+          <td><?php echo $value['website']; ?></td>
           <td>
-            <button type="button" class="edit btn btn-primary btn-sm" data-id="<?php echo $sup['sup_id']; ?>">แก้ไข</button>
-            <button type="button" class="del btn btn-danger btn-sm" data-id="<?php echo $sup['sup_id']; ?>">ลบ</button>
+            <a class="btn btn-warning" href="supplier-edit.php?sup_id=<?php echo $value['sup_id']; ?>">แก้ไข</a>
+            <a class="btn btn-danger" href="supplier-del.php?sup_id=<?php echo $value['sup_id']; ?>">ลบ</a>
           </td>
         </tr>
-        <?php
-        $row++;
-      }
-      ?>
+        <?php endforeach; ?>
+
+      </tbody>
     </table>
-    <?php
-    if(page_total() > 1) { 	 //ให้แสดงหมายเลขเพจเฉพาะเมื่อมีมากกว่า 1 เพจ
-      echo '<p id="pagenum">';
-      page_echo_pagenums();
-      echo '</p>';
-    }
-    ?>
-
-    <div id="dialog">
-      <form id="form-sup">
-        <input type="hidden" name="action" id="action" value="">
-        <input type="hidden" name="sup_id" id="sup-id" value="">
-        <input type="text" name="sup_name" id="sup-name" placeholder="ชื่อบริษัทผู้จัดส่งสินค้า"><br>
-        <textarea name="address" id="address" placeholder="ที่อยู่"></textarea><br>
-        <input type="text" name="phone" id="phone" placeholder="โทร"><br>
-        <input type="text" name="contact_name" id="contact-name" placeholder="บุคคลในการติดต่อ"><br>
-        <input type="text" name="website" id="website" placeholder="เว็บไซต์"><br><br>
-
-        <button type="button" id="send">ส่งข้อมูล</button>
-      </form>
+    
     </div>
-
   </div>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-</body>
-</body>
-</html>
+
+  <?php include "footer.php"; ?>

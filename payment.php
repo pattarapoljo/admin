@@ -1,8 +1,8 @@
 <?php
 include "top.php";
-$sql = "SELECT * FROM payments";
+$sql = "SELECT payments.*, customers.email
+ 			  FROM payments LEFT JOIN customers ON payments.cust_id = customers.cust_id ORDER BY pay_id DESC";
 $result = mysqli_query($link, $sql);
-
 ?>
 
 <div class="row">
@@ -28,14 +28,14 @@ $result = mysqli_query($link, $sql);
             <td><?php echo $value['location']; ?></td>
             <td><?php echo $value['amount']; ?></td>
             <td><?php echo $value['transfer_date']; ?></td>
-            <td></td>
+            <td><?php echo $value['email']; ?></td>
             <td>
 
               <?php if ($value['confirm'] == 'yes'): ?>
                 <span class="badge badge-secondary">ได้รับแล้ว</span>
               <?php else: ?>
-                <a href="payment-confirm.php?pay_id=<?php echo $value['pay_id']; ?>" class="btn btn-success" >ยืนยัน</a>
-                <a class="btn btn-danger" href="payment-del.php?cat_id=<?php echo $value['pay_id']; ?>">ลบ</a>
+                <a href="payment-confirm.php?pay_id=<?php echo $value['pay_id']; ?>&order_id=<?php echo $value['order_id']; ?>" class="btn btn-success" >ยืนยัน</a>
+                <a href="payment-delete.php?pay_id=<?php echo $value['pay_id']; ?>" class="btn btn-danger" >ลบ</a>
               <?php endif; ?>
 
               </td>

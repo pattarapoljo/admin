@@ -3,7 +3,7 @@
 <div class="row">
 	<div class="col">
 		<form method="post" action="category-save.php">
-			<div class="form-group">
+			<div class="form-group" ><br>
 				<label for="">ชื่อหมวดหมู่</label>
 				<input name="cat_name" type="text" class="form-control">
 			</div>

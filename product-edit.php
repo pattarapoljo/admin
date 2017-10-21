@@ -29,7 +29,7 @@ include "check-login.php";
 		overflow: auto;
 		resize: none;
 	}
-	[name=price], [name=quantity] {
+	[name=price], [name=balance] {
 		width: 100px;
 	}
 	[name=category] {
@@ -162,7 +162,7 @@ $row = mysqli_fetch_array($result);
 <input type="text" name="pro_name" id="pro-name" value="<?php echo $row['pro_name']; ?>"> (ชื่อสินค้า) <br>
 <textarea name="detail" id="detail"><?php echo $row['detail']; ?></textarea> (รายละเอียด)<br>
 <input type="text" name="price" id="price" value="<?php echo $row['price']; ?>"> (ราคา)&nbsp;&nbsp;
-<input type="text" name="quantity" id="quantity"value="<?php echo $row['quantity']; ?>"> (จำนวนสินค้า)<br>
+<input type="text" name="balance" id="balance"value="<?php echo $row['balance']; ?>"> (จำนวนสินค้า)<br>
 <select name="category" id="category">
     <?php
 	$sql = "SELECT * FROM categories";

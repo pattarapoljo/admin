@@ -1,7 +1,7 @@
 <?php
-sleep(1);
+
 include "check-login.php";
-if(!$_FILES) { 	
+if(!$_FILES) {
 	exit;
 }
 
@@ -12,9 +12,9 @@ if(is_uploaded_file($_FILES['file']['tmp_name']))  {
 		include "lib/IMager/imager.php";
 		$img = image_upload('file');
 		$img = image_to_jpg($img);
-		//$img = image_resize_max($img, 300, 300); 
+		//$img = image_resize_max($img, 300, 300);
 		$file = image_store_db($img, "image/jpeg");
-			
+
 		$pro_id = $_SESSION['pro_id'];
 		$sql = "REPLACE INTO images VALUES('', '$pro_id', '$file')";
 		mysqli_query($link, $sql);

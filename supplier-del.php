@@ -1,8 +1,14 @@
-<?php
+ <?php
+ include "check-login.php";
+ include "dblink.php";
 
-if (isset($_GET['cat_id'])) {
-  # ลบ และ กลับไปหน้าเดิม
-} else {
-  # กลับไปหน้าเดิม
-}
- ?>
+
+ $sup_id = $_GET['sup_id'];
+
+ $sql = "DELETE FROM suppliers WHERE sup_id = '$sup_id'";
+ mysqli_query($link, $sql);
+
+ mysqli_close($link);
+
+ header('Location: supplier.php');
+  ?>

@@ -11,12 +11,13 @@ include "dblink.php";
   <title>ระบบจำหน่ายอะไหล่รถจักรยานยนต์</title>
 
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- Add Material CSS, replace Bootstrap CSS -->
 
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" href="css/material.css">
+<!-- <link rel="stylesheet" href="css/material.css"> -->
 </head>
 
 <body style="padding-top:70px">
@@ -43,15 +44,18 @@ include "dblink.php";
 			<li class="nav-item">
         <a class="nav-link" href="payment.php">แจ้งโอน </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="new.php">ข่าว </a>
+      </li>
 			<li class="nav-item">
         <a class="nav-link" href="customer.php">ลูกค้า </a>
       </li>
 			<li class="nav-item">
-        <a class="nav-link" href="../admin2/index.php">ไปที่ร้านค้า</a>
+        <a class="nav-link" href="../2/index.php">ไปที่ร้านค้า</a>
       </li>
 
     </ul>
 
   </div>
 </nav>
-<div class="container">
+<div class="container-fluid">
