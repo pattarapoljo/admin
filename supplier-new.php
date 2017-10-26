@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col">
     <form method="post" action="supplier-save.php">
-      <div class="form-group"><br>
+      <div class="form-group">
         <label for="">ชื่อผู้จัดส่ง</label>
         <input name="sup_name" type="text" class="form-control">
 				<label for="">ที่อยู่</label>

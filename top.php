@@ -45,13 +45,16 @@ include "dblink.php";
         <a class="nav-link" href="payment.php">แจ้งโอน </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="new.php">ข่าว </a>
+        <a class="nav-link" href="news.php">ข่าว </a>
       </li>
 			<li class="nav-item">
         <a class="nav-link" href="customer.php">ลูกค้า </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="summary.php?from_date=<?php echo date("Y-m-d"); ?>&to_date=<?php echo date("Y-m-d"); ?>">สรุปยอดการสั่งซื้อ </a>
+      </li>
 			<li class="nav-item">
-        <a class="nav-link" href="../2/index.php">ไปที่ร้านค้า</a>
+        <a class="nav-link" href="../shop/index.php">ไปที่ร้านค้า</a>
       </li>
 
     </ul>
