@@ -36,19 +36,8 @@ $result = mysqli_query($link, $sql);
         <tr>
           <td><?php echo $value['pro_id']; ?></td>
           <td>
-        <span class="tag"></span><br>
-        <?php
-     		$sql = "SELECT * FROM images WHERE pro_id = {$pro['pro_id']}";
-     		$r = mysqli_query($link, $sql);
-     		if(($r) > 0) {
-     			$src = "read-image.php?id=";
-     			gallery_thumb_width(70);
-     			while($img =mysqli_fetch_array($r)) {
-     				gallery_echo_img($src . $img['img_id']);
-     			}
-     		}
-     	?>
-      </td>
+            <img src="images/products/pr1.png" alt="img" height="100px">
+          </td>
           <td><?php echo $value['pro_name']; ?></td>
           <td><?php echo $value['price']; ?></td>
           <td><?php echo $value['balance']; ?></td>
