@@ -14,10 +14,6 @@ $result = mysqli_query($link, $sql);
 <div class="row">
   <div class="col table-responsive">
     <table class="CTable table table-striped table-bordered">
-      <?php
-      include "lib/IMGallery/imgallery-no-jquery.php";
-      while($pro = mysqli_fetch_array($result))
-      ?>
       <thead>
         <tr>
           <th>ลำดับ</th>
@@ -35,9 +31,7 @@ $result = mysqli_query($link, $sql);
         <?php foreach ($result as $key => $value): ?>
         <tr>
           <td><?php echo $value['pro_id']; ?></td>
-          <td>
-            <img src="images/products/pr1.png" alt="img" height="100px">
-          </td>
+          <td><img src="images/products/<?php echo $value['pro_image']; ?>" width="100px" height="100px"></td>
           <td><?php echo $value['pro_name']; ?></td>
           <td><?php echo $value['price']; ?></td>
           <td><?php echo $value['balance']; ?></td>

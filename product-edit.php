@@ -1,243 +1,78 @@
 <?php
-include "check-login.php";
- ?>
-<!doctype html>
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>ระบบจำหน่ายอะไหล่รถจักรยานยนต์</title>
-<style>
-	body {
-		font: 14px tahoma;
-		text-align: center;
-	}
-	input:not([type=file]), select, textarea {
-		font: 14px tahoma;
-		background: lavender;
-		border: solid 1px gray;
-		padding: 1px;
-		margin: 3px;
-	}
-	button {
-		font: 14px tahoma;
-	}
-	[name=pro_name], [name=detail] {
-		width: 400px;
-	}
-	[name=detail] {
-		height: 100px;
-		overflow: auto;
-		resize: none;
-	}
-	[name=price], [name=balance] {
-		width: 100px;
-	}
-	[name=category] {
-		width: 104px;
-	}
-	[name=supplier] {
-		width: 240px;
-	}
-	.attr-name {
-		width: 80px;
-	}
-	.attr-value {
-		width: 308px;
-	}
-	#form-pro {
-		display: inline-block;
-		width: 530px;
-		background: #dfd;
-		padding: 5px;
-		text-align: left;
-	}
-	#form-pro button {
-		display: block;
-		margin: auto;
-	}
-	.form-upload {
-		display: inline-block;
-		width: 530px;
-		border-bottom: solid 1px gray;
-		background: #ef9;
-		padding: 5px;
-		text-align: left;
-	}
-	.form-upload:nth-of-type(6) {
-		border-bottom: none !important;
-	}
-	.div-no-img {
-		display: inline-block;
-		width: 50px;
-		height: 30px;
-		border: solid 1px gray;
-		margin: 5px;
-	}
-</style>
-<script src="js/jquery-2.1.1.min.js"> </script>
-<script src="js/jquery.form.min.js"> </script>
-<script src="js/jquery.blockUI.js"> </script>
-<script>
+include "top.php";
+// สินค้า
+$pro_id = $_GET['pro_id'];
+$sql = "SELECT * FROM products 
+            LEFT JOIN categories USING (cat_id)
+            LEFT JOIN suppliers USING (sup_id)
+            WHERE pro_id =".$pro_id;
+$query = mysqli_query($link, $sql);
+$prod = mysqli_fetch_array($query);
 
-$(function() {
-	$('#bt-send').click(function() {
-		var d = $('#form-pro').serializeArray();
-		$.ajax({
-			url: 'product-edit-save.php',
-			data: d,
-			type: 'post',
-			dataType: "html",
-			beforeSend: function() {
-				$.blockUI({message:'<h3>กำลังส่งข้อมูล...</h3>'});
-			},
-			success: function(result) {
-				location.reload();
-				opener.location.reload();
-			},
-			complete: function() {
-				$.unblockUI();
-			}
-		});
-	});
+// รายการหมวดหมู่
+$sql = "SELECT * FROM categories ";
+$Categorie = mysqli_query($link,$sql);
 
-	$('.delete-img').click(function(event) {
-		if(!confirm('ยืนยันการลบภาพนี้')) {
-			return;
-		}
-		var id = $(this).attr('data-id');
-		var d = {img_id: id};
-		$.ajax({
-			url: 'product-edit-delete-img.php',
-			data: d,
-			type: 'post',
-			dataType: "html",
-			beforeSend: function() {
-				$.blockUI({message:'<h3>กำลังส่งข้อมูล...</h3>'});
-			},
-			success: function(result) {
-				location.reload();
-				opener.location.reload();
-			},
-			complete: function() {
-				$.unblockUI();
-			}
-		});
-	});
 
-	$('.bt-upload').click(function() {
-		$(this).parent('form').ajaxForm({
-			beforeSend: function() {
-				$.blockUI({message:'<h3>กำลังอัปโหลดภาพ</h3>'});
-			},
-			complete: function() {
-				$.unblockUI();
-				location.reload();
-				opener.location.reload();
-			}
-		});
-	});
+// รายการผู้จัดส่ง
+$sql = "SELECT * FROM suppliers ";
+$Supplier = mysqli_query($link,$sql);
 
-});
-</script>
-</head>
-
-<body>
-<?php
-include "dblink.php";
-$pro_id = $_GET['id'];
-$sql = "SELECT products.*, categories.cat_name,  suppliers.sup_name
- 			FROM products
-			LEFT JOIN categories
-			ON products.cat_id = categories.cat_id
-			LEFT JOIN suppliers
-			ON products.sup_id = suppliers.sup_id
-			WHERE products.pro_id = $pro_id";
-
-$result = mysqli_query($link, $sql);
-$row = mysqli_fetch_array($result);
-?>
-<h3>แก้ไขข้อมูลสินค้า</h3>
-<form id="form-pro">
-<input type="hidden" name="pro_id" id="pro-id" value="<?php echo $row['pro_id']; ?>">
-<input type="text" name="pro_name" id="pro-name" value="<?php echo $row['pro_name']; ?>"> (ชื่อสินค้า) <br>
-<textarea name="detail" id="detail"><?php echo $row['detail']; ?></textarea> (รายละเอียด)<br>
-<input type="text" name="price" id="price" value="<?php echo $row['price']; ?>"> (ราคา)&nbsp;&nbsp;
-<input type="text" name="balance" id="balance"value="<?php echo $row['balance']; ?>"> (จำนวนสินค้า)<br>
-<select name="category" id="category">
-    <?php
-	$sql = "SELECT * FROM categories";
-	$r_cat= mysqli_query($link, $sql);
-
-	while($cat = mysqli_fetch_array($r_cat)) {
-		echo "<option value=\"{$cat['cat_id']}\">{$cat['cat_name']}</option>";
-	}
-	?>
-</select> (หมวด)&nbsp;
-<script> $('#category').val('<?php echo $row['cat_id']; ?>'); </script>
-<select name="supplier" id="supplier">
-    <?php
-	$sql = "SELECT sup_id, sup_name FROM suppliers";
-	$r_sup = mysqli_query($link, $sql);
-	while($sup = mysqli_fetch_array($r_sup)) {
-		echo "<option value=\"{$sup['sup_id']}\">{$sup['sup_name']}</option>";
-	}
-	?>
-</select> (ผู้จัดส่ง)
-<script> $('#supplier').val('<?php echo $row['sup_id']; ?>'); </script>
-<br><br>
-<?php
-	$sql = "SELECT * FROM attributes WHERE pro_id = $pro_id ORDER BY attr_id ASC";
-	$r = mysqli_query($link, $sql);
 ?>
 
-<?php  $attr = mysqli_fetch_array($r); ?>
-<input type="hidden" name="attr_id[]" value="<?php echo $attr['attr_id']; ?>">
-<input type="text" name="attr_name[]" class="attr-name" value="<?php echo $attr['attr_name']; ?>">
-<input type="text" name="attr_value[]" class="attr-value"  value="<?php echo $attr['attr_value']; ?>"> (คุณลักษณะ/ค่า)<br>
+<div class="row">
+	<div class="col">
+		<form method="post" action="product-save.php" enctype="multipart/form-data">		
+			<input name="pro_id" type="hidden" value="<?php echo $prod['pro_id'] ?>">
+			<div class="form-group">
+				<label for="">ชื่อสินค้า</label>
+				<input name="pro_name" type="text" class="form-control" value="<?php echo $prod['pro_name'] ?>">
+				<label for="">รายละเอียด</label>
+				<input name="detail" type="text" class="form-control" value="<?php echo $prod['detail'] ?>">
+				<label for="">ราคา</label>
+				<input name="price" type="text" class="form-control" value="<?php echo $prod['price'] ?>">
+				<label for="">จำนวน</label>
+				<input name="balance" type="text" class="form-control" value="<?php echo $prod['balance'] ?>">
 
-  <?php  $attr = mysqli_fetch_array($r); ?>
-<input type="hidden" name="attr_id[]" value="<?php echo $attr['attr_id']; ?>">
-<input type="text" name="attr_name[]" class="attr-name" value="<?php echo $attr['attr_name']; ?>">
-<input type="text" name="attr_value[]" class="attr-value"  value="<?php echo $attr['attr_value']; ?>"> (คุณลักษณะ/ค่า)<br><br>
-<button type="button" id="bt-send">ส่งข้อมูล</button>
-</form>
-<br><br>
-<?php
-include "lib/IMGallery/imgallery-no-jquery.php";
-@$row = $first;
-$sql = "SELECT * FROM images WHERE pro_id = $pro_id ORDER BY img_id ASC";
-$r = mysqli_query($link, $sql);
+				<label for="">เลือกหมวดหมู่</label>
+				<select name="cat_id" class="form-control">
 
-$src = "read-image.php?id=";
-gallery_thumb_width(50);
+				<?php foreach ($Categorie as $key => $value): ?>
+					<?php if ($value['cat_id'] == $prod['cat_id']): ?>
+					<option value="<?php echo $value['cat_id'] ?>" selected><?php echo $value['cat_name'] ?></option>
+					<?php else: ?>
+						<option value="<?php echo $value['cat_id'] ?>" ><?php echo $value['cat_name'] ?></option>
+					<?php endif; ?>
 
-for($i = 1; $i <= 5; $i++) {
-?>
-  <form class="form-upload" method="post" action="product-edit-image.php" enctype="multipart/form-data">
-<?php
-	$img =mysqli_fetch_array($r);
-	$img_id = $img['img_id'];
-	if($img) {
-		gallery_echo_img($src . $img_id);
-	}
-	else {
-		echo "<div class=\"div-no-img\"></div>";
-	}
-?>
-    <input type="hidden" name="img_id" value="<?php echo $img_id; ?>">
- 	<input type="hidden" name="pro_id" value="<?php echo $pro_id; ?>">
- 	<input type="file" name="file">
- 	<button type="submit" class="bt-upload">อัปโหลดภาพ</button>
-<?php
-		if($img) {
-			 echo '<button type="button" class="delete-img" data-id="' . $img_id . '">ลบภาพนี้</button>';
-		}
- ?>
-	</form>
-	<br>
-<?php
-}   //end for
-?>
-  <a href="product.php"><input type="button" value="กลับหน้าแรก"></a>
-</body>
-</html>
+			<?php endforeach; ?>
+
+        </select>
+
+				<label for="">เลือกผู้จัดส่ง</label>
+				<select name="sup_id" class="form-control">
+
+				<?php foreach ($Supplier as $key => $value): ?>
+					<?php if ($value['sup_id'] == $prod['sup_id']): ?>
+					<option value="<?php echo $value['sup_id'] ?>" selected><?php echo $value['sup_name'] ?></option>
+					<?php else: ?>
+						<option value="<?php echo $value['sup_id'] ?>" ><?php echo $value['sup_name'] ?></option>
+					<?php endif; ?>
+
+			<?php endforeach; ?>
+
+        </select>
+
+				<label for="">รูปภาพ</label>   
+				<input name="pro_image" type="file" class="form-control" value="<?php echo $prod['pro_image'] ?>">
+				
+			</div>
+
+			<button type="submit" class="btn btn-success">บันทึก</button>
+			<a href="product.php" class="btn btn-danger">ยกเลิก</a>
+		</form>
+
+	</div>
+</div>
+
+
+<?php include "footer.php"; ?>

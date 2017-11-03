@@ -32,9 +32,7 @@ $result = mysqli_query($link,$sql);
           <td><?php echo $value['news_topic'];?></td>
           <td><?php echo $value['detail'];?></td>
           <td><?php echo $value['news_date']; ?></td>
-          <td>
-            <img src="images/news/pr1.jpg" alt="img" height="100px">
-          </td>
+          <td><img src="images/news/<?php echo $value['news_image']; ?>" width="100px" height="100px"></td>
           <td><?php echo $value['newstype_detail']; ?></td>
           <td>
             <a class="btn btn-warning" href="news-edit.php?news_id=<?php echo $value['news_id']; ?>">แก้ไข</a>

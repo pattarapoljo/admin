@@ -5,7 +5,7 @@ $result = mysqli_query($link,$sql);
 
 <div class="row">
   <div class="col">
-    <form method="post" action="news-save.php">
+    <form method="post" action="news-save.php" enctype="multipart/form-data">
       <div class="form-group">
         <label for="">หัวข้อข่าว</label>
         <input name="news_topic" type="text" class="form-control">
@@ -23,7 +23,11 @@ $result = mysqli_query($link,$sql);
 
         </select>
 
+        <label for="">รูปภาพ</label>   
+        <input name="news_image" type="file" class="form-control"> 
+
       </div>
+
       <button type="submit" class="btn btn-success">บันทึก</button>
       <a href="news.php" class="btn btn-danger">ยกเลิก</a>
     </form>

@@ -16,7 +16,7 @@ $NewsType = mysqli_query($link,$sql);
 
 <div class="row">
 	<div class="col">
-		<form method="post" action="news-save.php">
+	<form method="post" action="news-save.php" enctype="multipart/form-data">
 			<input name="news_id" type="hidden" value="<?php echo $News['news_id'] ?>">
 			<div class="form-group">
 				<label for="">หัวข้อข่าว</label>
@@ -39,6 +39,9 @@ $NewsType = mysqli_query($link,$sql);
 					<?php endforeach; ?>
 
         </select>
+
+				<label for="">รูปภาพ</label>   
+				<input name="news_image" type="file" class="form-control" value="<?php echo $News['news_image'] ?>">
 
 			</div>
 
