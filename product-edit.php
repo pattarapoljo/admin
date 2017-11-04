@@ -28,7 +28,7 @@ $Supplier = mysqli_query($link,$sql);
 				<label for="">ชื่อสินค้า</label>
 				<input name="pro_name" type="text" class="form-control" value="<?php echo $prod['pro_name'] ?>">
 				<label for="">รายละเอียด</label>
-				<input name="detail" type="text" class="form-control" value="<?php echo $prod['detail'] ?>">
+				<textarea name="detail" class="form-control" ><?php echo $prod['detail'] ?></textarea>
 				<label for="">ราคา</label>
 				<input name="price" type="text" class="form-control" value="<?php echo $prod['price'] ?>">
 				<label for="">จำนวน</label>

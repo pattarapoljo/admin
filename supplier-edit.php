@@ -15,8 +15,8 @@ $sups = mysqli_fetch_array($result);
 			<div class="form-group">
 				<label for="">ชื่อบริษัท</label>
 				<input name="sup_name" type="text" class="form-control" value="<?php echo $sups['sup_name'] ?>">
-				<label for="">ที่อยู่</label>
-				<input name="address" type="text" class="form-control" value="<?php echo $sups['address'] ?>">
+				<label for="">ที่อยู่</label>				
+				<textarea name="address" class="form-control" ><?php echo $sups['address'] ?></textarea>
 				<label for="">เบอร์โทร</label>
 				<input name="phone" type="text" class="form-control" value="<?php echo $sups['phone'] ?>">
 				<label for="">บุคคลในการติดต่อ</label>

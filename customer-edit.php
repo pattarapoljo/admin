@@ -18,7 +18,7 @@ $custs = mysqli_fetch_array($result);
 				<label for="">นามสกุล</label>
 				<input name="lastname" type="text" class="form-control" value="<?php echo $custs['lastname'] ?>">
 				<label for="">ที่อยู่</label>
-				<input name="address" type="text" class="form-control" value="<?php echo $custs['address'] ?>">
+				<textarea name="address" class="form-control" ><?php echo $custs['address'] ?></textarea>
 				<label for="">เบอร์โทร</label>
 				<input name="phone" type="text" class="form-control" value="<?php echo $custs['phone'] ?>">
 				<label for="">อีเมลล์</label>
