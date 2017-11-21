@@ -16,6 +16,10 @@ $sup = mysqli_query($link,$sql);
       <div class="form-group">
             <label for="">ชื่อสินค้า</label>
             <input name="pro_name" type="text" class="form-control">
+            <label for="">สี</label>
+            <input name="color" type="text" class="form-control">
+            <label for="">ขนาด</label>
+            <input name="size" type="text" class="form-control">
             <label for="">รายละเอียด</label>
             <textarea name="detail" type="text" class="form-control"></textarea>
             <label for="">ราคา</label>

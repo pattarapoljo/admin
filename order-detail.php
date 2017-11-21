@@ -84,7 +84,8 @@ $customers = mysqli_fetch_array($result);
     <tr>
       <th>ลำดับ</th>
       <th>ชื่อสินค้า</th>
-      <th>คุณลักษณะ</th>
+      <th>สี</th>
+      <th>ขนาด</th>
       <th>ราคา</th>
       <th>จำนวน</th>
       <th>รวม</th>
@@ -100,7 +101,8 @@ $customers = mysqli_fetch_array($result);
 
       <td><?php echo $index+1; ?></td>
       <td><?php echo $value['pro_name']; ?></td>
-      <td><?php echo $value['attribute']; ?></td>
+      <td><?php echo $value['color']; ?></td>
+      <td><?php echo $value['size']; ?></td>
       <td><?php echo $value['price']; ?></td>
       <td><?php echo $value['quantity']; ?></td>
       <td><?php echo $value['quantity']*$value['price']; ?></td>
@@ -112,7 +114,7 @@ $customers = mysqli_fetch_array($result);
     </tr>
 
     <tr>
-      <td colspan="5" class="text-right">รวม</td>
+      <td colspan="6" class="text-right">รวม</td>
       <td><?php echo $sum; ?></td>
     </tr>
   </tbody>

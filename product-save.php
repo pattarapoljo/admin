@@ -8,6 +8,8 @@ if (isset($_POST['pro_id'])) {
   $sup_id = $_POST['sup_id'];
   $pro_name = $_POST['pro_name'];
   $detail = $_POST['detail'];
+  $color = $_POST['color'];
+  $size = $_POST['size'];
   $price = $_POST['price'];
   $balance = $_POST['balance'];
 
@@ -28,7 +30,7 @@ if (isset($_POST['pro_id'])) {
     $pro_image = $new_image_name;
   }
   
-  $sql = "UPDATE products SET cat_id = '$cat_id', sup_id = '$sup_id', pro_name = '$pro_name' , detail = '$detail' , price = '$price' , balance = '$balance' , pro_image = '$pro_image'
+  $sql = "UPDATE products SET cat_id = '$cat_id', sup_id = '$sup_id', pro_name = '$pro_name' , detail = '$detail' , color = '$color' , size = '$size' , price = '$price' , balance = '$balance' , pro_image = '$pro_image'
   WHERE pro_id = '$id'";
   mysqli_query($link, $sql);
   
@@ -37,6 +39,8 @@ if (isset($_POST['pro_id'])) {
   $sup_id = $_POST['sup_id'];
   $pro_name = $_POST['pro_name'];
   $detail = $_POST['detail'];
+  $color = $_POST['color'];
+  $size = $_POST['size'];
   $price = $_POST['price'];
   $balance = $_POST['balance'];
   
@@ -48,7 +52,7 @@ if (isset($_POST['pro_id'])) {
   $pro_image = $new_image_name;
 
   $sql = "INSERT INTO products
-  VALUES('', '$cat_id', '$sup_id', '$pro_name', '$detail', '$price', '$balance', '$pro_image')";
+  VALUES('', '$cat_id', '$sup_id', '$pro_name', '$detail', '$color', '$size', '$price', '$balance', '$pro_image')";
   mysqli_query($link, $sql);
 }
 

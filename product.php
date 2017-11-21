@@ -22,7 +22,7 @@ $result = mysqli_query($link, $sql);
           <th>ราคา</th>
           <th>จำนวน</th>
           <th>หมวดหมู่</th>
-          <th>ผู้จัดส่ง</th>
+          <th>ผู้จัดส่ง</th>        
           <th>ตัวเลือก</th>
         </tr>
       </thead>

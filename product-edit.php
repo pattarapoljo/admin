@@ -27,6 +27,10 @@ $Supplier = mysqli_query($link,$sql);
 			<div class="form-group">
 				<label for="">ชื่อสินค้า</label>
 				<input name="pro_name" type="text" class="form-control" value="<?php echo $prod['pro_name'] ?>">
+				<label for="">สี</label>
+           		<input name="color" type="text" class="form-control" value="<?php echo $prod['color'] ?>">
+            	<label for="">ขนาด</label>
+            	<input name="size" type="text" class="form-control" value="<?php echo $prod['size'] ?>">
 				<label for="">รายละเอียด</label>
 				<textarea name="detail" class="form-control" ><?php echo $prod['detail'] ?></textarea>
 				<label for="">ราคา</label>

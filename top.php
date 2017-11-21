@@ -41,9 +41,6 @@ include "dblink.php";
 			<li class="nav-item">
         <a class="nav-link" href="order.php">สั่งซื้อ </a>
       </li>
-			<li class="nav-item">
-        <a class="nav-link" href="payment.php">แจ้งโอน </a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href="news.php">ข่าว </a>
       </li>

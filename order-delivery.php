@@ -3,7 +3,7 @@ include "check-login.php";
 include "dblink.php";
 
 $order_id = $_GET['order_id'];
-$sql = "UPDATE orders SET delivery = 'yes' WHERE order_id = '$order_id'";
+$sql = "UPDATE orders SET status = 'yes' WHERE order_id = '$order_id'";
 mysqli_query($link, $sql);
 
 //ลบจำนวนคงเหลือของสินค้าแต่ละชนิดเท่ากับจำนวนที่ส่งออกไป
